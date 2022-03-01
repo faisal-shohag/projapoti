@@ -1,6 +1,7 @@
 import 'package:amarboi/model/book_model.dart';
 import 'package:amarboi/model/database.dart';
 import 'package:amarboi/pages/details.dart';
+import 'package:amarboi/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutterfire_ui/firestore.dart';
@@ -24,22 +25,76 @@ class _AllBooksState extends State<AllBooks> {
         count = snapshot.docs.length;
         return Scaffold(
           appBar: AppBar(title: Text('সব বই(${snapshot.docs.length})')),
-          body: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200, mainAxisExtent: 120),
-              shrinkWrap: true,
-              itemCount: snapshot.docs.length,
-              itemBuilder: (context, index) {
-                final hasEndReached = snapshot.hasMore &&
-                    index + 1 == snapshot.docs.length &&
-                    !snapshot.isFetchingMore;
-                if (hasEndReached) {
-                  snapshot.fetchMore();
-                }
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (cintext) => Search()));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                        left: 5, top: 5, right: 5, bottom: 5),
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          child: const Icon(
+                            Fontisto.search,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            'সার্চ...',
+                            style: TextStyle(color: Colors.grey, fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                GridView.builder(
+                    physics: const ScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200, mainAxisExtent: 120),
+                    shrinkWrap: true,
+                    itemCount: snapshot.docs.length,
+                    itemBuilder: (context, index) {
+                      final hasEndReached = snapshot.hasMore &&
+                          index + 1 == snapshot.docs.length &&
+                          !snapshot.isFetchingMore;
+                      if (hasEndReached) {
+                        snapshot.fetchMore();
+                      }
 
-                final post = snapshot.docs[index].data();
-                return buildBookPost(post, snapshot.docs[index].id);
-              }),
+                      final post = snapshot.docs[index].data();
+                      return buildBookPost(post, snapshot.docs[index].id);
+                    }),
+              ],
+            ),
+          ),
         );
       },
     );
