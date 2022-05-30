@@ -1,6 +1,6 @@
 # Projapoti
 <center><img  src="https://github.com/faisal-shohag/projapoti/blob/master/assets/projapoti.png?raw=true"/></center>
-<img height="700px" src="https://github.com/faisal-shohag/projapoti/blob/master/assets/photo_2022-05-30_22-21-02.jpg?raw=true"/><img height="700px" src="https://github.com/faisal-shohag/projapoti/blob/master/assets/photo_2022-05-30_22-20-54.jpg?raw=true"/><img height="700px" src="https://github.com/faisal-shohag/projapoti/blob/master/assets/photo_2022-05-30_22-20-40.jpg?raw=true"/>
+<div style="display: flex; flex-wrap: wrap; gap: 2px;"><img height="700px" src="https://github.com/faisal-shohag/projapoti/blob/master/assets/photo_2022-05-30_22-21-02.jpg?raw=true"/><img height="700px" src="https://github.com/faisal-shohag/projapoti/blob/master/assets/photo_2022-05-30_22-20-54.jpg?raw=true"/><img height="700px" src="https://github.com/faisal-shohag/projapoti/blob/master/assets/photo_2022-05-30_22-20-40.jpg?raw=true"/></div>
 
 
 
