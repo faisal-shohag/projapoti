@@ -1,6 +1,6 @@
 # Projapoti
 
-A new Flutter project.
+A Book App.
 
 ## Getting Started
 
